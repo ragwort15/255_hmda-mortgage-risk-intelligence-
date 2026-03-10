@@ -27,4 +27,7 @@ https://ffiec.cfpb.gov/data-browser/data/2022/
 ## Setup
 ```bash
 pip install pandas scikit-learn xgboost shap matplotlib seaborn jupyter
+
+<img width="882" height="391" alt="image" src="https://github.com/user-attachments/assets/17704f76-e94a-47f1-a429-9dc0f5f33c79" />
+
 ```
