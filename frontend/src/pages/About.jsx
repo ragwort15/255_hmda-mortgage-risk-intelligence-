@@ -27,10 +27,10 @@ export default function About() {
 
         <Card title="Final Model">
           <Row label="Algorithm" value="XGBoost (safe feature set)" />
-          <Row label="Test AUC" value="0.844" />
+          <Row label="Test AUC" value="0.833" />
           <Row label="Operating Threshold" value="0.70" />
           <Row label="Deny Precision" value="0.898" />
-          <Row label="Features Used" value="11 safe (no protected class)" />
+          <Row label="Features Used" value=" 7 safe (no protected class)" />
         </Card>
 
         <Card title="Methodology">
@@ -45,7 +45,7 @@ export default function About() {
               and deny-class precision/recall
             </li>
             <li>
-              Selected XGBoost at threshold 0.70 to prioritize precision on
+              Selected XGBoost at threshold 0.25 to prioritize precision on
               denial decisions
             </li>
             <li>SHAP values used for both global and per-prediction explanations</li>
