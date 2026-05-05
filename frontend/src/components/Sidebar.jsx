@@ -9,10 +9,10 @@ const links = [
 
 export default function Sidebar({ user, onLogout }) {
   return (
-    <aside className="hidden md:flex fixed inset-y-0 left-0 w-64 bg-navy-900 text-slate-200 flex-col">
-      <div className="px-6 py-6 border-b border-navy-700">
-        <div className="text-xl font-bold text-white">🏦 HMDA Risk</div>
-        <div className="text-xs text-slate-400 mt-1">
+    <aside className="hidden md:flex fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-navy-900 to-navy-800 text-slate-200 flex-col shadow-xl ring-1 ring-white/5">
+      <div className="px-6 py-6 border-b border-white/10">
+        <div className="text-xl font-bold text-white tracking-tight">🏦 HMDA Risk</div>
+        <div className="text-xs text-slate-400 mt-1.5 leading-relaxed">
           Mortgage Lending Intelligence
         </div>
       </div>
@@ -23,10 +23,10 @@ export default function Sidebar({ user, onLogout }) {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition-colors ${
+              `flex items-center gap-3 pl-3 pr-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 border-l-[3px] ${
                 isActive
-                  ? 'bg-navy-700 text-white'
-                  : 'text-slate-300 hover:bg-navy-800 hover:text-white'
+                  ? 'bg-white/[0.08] text-white border-sky-400 shadow-inner'
+                  : 'border-transparent text-slate-300 hover:bg-white/[0.06] hover:text-white'
               }`
             }
           >
@@ -37,9 +37,9 @@ export default function Sidebar({ user, onLogout }) {
       </nav>
 
       {user && (
-        <div className="px-4 py-4 border-t border-navy-700">
+        <div className="px-4 py-4 border-t border-white/10">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-9 h-9 rounded-full bg-navy-700 flex items-center justify-center text-white text-sm font-semibold">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center text-white text-sm font-semibold shadow-md">
               {user.username?.[0]?.toUpperCase() || 'U'}
             </div>
             <div className="min-w-0">
@@ -53,14 +53,14 @@ export default function Sidebar({ user, onLogout }) {
           </div>
           <button
             onClick={onLogout}
-            className="w-full text-xs text-slate-300 hover:text-white bg-navy-700 hover:bg-navy-600 rounded-md py-1.5 transition-colors"
+            className="w-full text-xs font-medium text-slate-200 hover:text-white bg-white/[0.06] hover:bg-white/10 rounded-lg py-2 transition-colors border border-white/10"
           >
             Sign out
           </button>
         </div>
       )}
 
-      <div className="px-6 py-3 border-t border-navy-700 text-[11px] text-slate-500">
+      <div className="px-6 py-3 border-t border-white/10 text-[11px] text-slate-500">
         Team 17 · CMPE 255 · SFSU
       </div>
     </aside>

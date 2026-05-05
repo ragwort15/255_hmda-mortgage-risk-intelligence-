@@ -36,8 +36,9 @@ FEATURE_ORDER = [
     "tract_population",
 ]
 
-DENY_THRESHOLD_HIGH = 0.70
-DENY_THRESHOLD_REVIEW = 0.40
+# Upper bound for "Manual Review"; denial verdict when prob >= DENY_THRESHOLD_HIGH.
+DENY_THRESHOLD_HIGH = 0.25
+DENY_THRESHOLD_REVIEW = 0.15
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})

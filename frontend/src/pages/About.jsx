@@ -1,16 +1,19 @@
 export default function About() {
   return (
     <div>
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">
-          About This Project
+      <header className="mb-8 pb-2 border-b border-slate-200/80">
+        <p className="text-xs font-semibold uppercase tracking-wider text-sky-700 mb-1">
+          CMPE 255 · Team 17
+        </p>
+        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
+          About this project
         </h1>
-        <p className="text-slate-600 mt-1">
-          HMDA Mortgage Lending Risk Intelligence — final project for CMPE 255.
+        <p className="text-slate-600 mt-2 max-w-2xl leading-relaxed">
+          HMDA mortgage lending risk intelligence — explainable ML on public CFPB data.
         </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
         <Card title="Team & Course">
           <Row label="Team" value="Team 17" />
           <Row label="Course" value="CMPE 255 — Data Mining" />
@@ -28,7 +31,7 @@ export default function About() {
         <Card title="Final Model">
           <Row label="Algorithm" value="XGBoost (safe feature set)" />
           <Row label="Test AUC" value="0.833" />
-          <Row label="Operating Threshold" value="0.70" />
+          <Row label="Operating Threshold" value="0.25" />
           <Row label="Deny Precision" value="0.898" />
           <Row label="Features Used" value=" 7 safe (no protected class)" />
         </Card>
@@ -53,16 +56,14 @@ export default function About() {
         </Card>
       </div>
 
-      <div className="mt-6 bg-white rounded-lg shadow-sm border border-slate-200 p-6">
-        <h2 className="text-lg font-semibold text-slate-900 mb-2">
-          Stack
-        </h2>
+      <div className="mt-8 bg-white rounded-2xl shadow-card border border-slate-200/80 p-6 sm:p-8">
+        <h2 className="text-lg font-semibold text-slate-900 mb-4">Stack</h2>
         <div className="flex flex-wrap gap-2 text-xs">
           {['React', 'Vite', 'Tailwind CSS', 'Recharts', 'Axios', 'Flask', 'XGBoost', 'SHAP', 'Pandas', 'scikit-learn'].map(
             (s) => (
               <span
                 key={s}
-                className="px-2.5 py-1 bg-slate-100 text-slate-700 rounded border border-slate-200"
+                className="px-3 py-1.5 bg-slate-50 text-slate-700 rounded-lg border border-slate-200/80 font-medium shadow-sm"
               >
                 {s}
               </span>
@@ -76,18 +77,22 @@ export default function About() {
 
 function Card({ title, children }) {
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
-      <h2 className="text-lg font-semibold text-slate-900 mb-4">{title}</h2>
-      <div className="space-y-2">{children}</div>
+    <div className="bg-white rounded-2xl shadow-card border border-slate-200/80 p-6 sm:p-7 transition-shadow hover:shadow-card-hover">
+      <h2 className="text-lg font-semibold text-slate-900 mb-5 pb-2 border-b border-slate-100">
+        {title}
+      </h2>
+      <div className="space-y-0">{children}</div>
     </div>
   )
 }
 
 function Row({ label, value }) {
   return (
-    <div className="flex justify-between text-sm">
-      <span className="text-slate-500">{label}</span>
-      <span className="text-slate-900 font-medium text-right">{value}</span>
+    <div className="flex justify-between gap-4 text-sm py-3 border-b border-slate-100 last:border-0 last:pb-0 first:pt-0">
+      <span className="text-slate-500 shrink-0">{label}</span>
+      <span className="text-slate-900 font-medium text-right leading-snug">
+        {value}
+      </span>
     </div>
   )
 }

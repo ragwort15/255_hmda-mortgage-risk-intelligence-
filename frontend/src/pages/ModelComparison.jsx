@@ -52,6 +52,7 @@ const rocCurve = [
 ]
 
 const thresholds = [
+  { t: 0.25, precision: 0.481, recall: 0.852, f1: 0.612 },
   { t: 0.4, precision: 0.624, recall: 0.781, f1: 0.694 },
   { t: 0.45, precision: 0.681, recall: 0.712, f1: 0.696 },
   { t: 0.5, precision: 0.738, recall: 0.622, f1: 0.675 },
@@ -64,15 +65,20 @@ const thresholds = [
 export default function ModelComparison() {
   return (
     <div>
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">Model Comparison</h1>
-        <p className="text-slate-600 mt-1">
+      <header className="mb-8 pb-2 border-b border-slate-200/80">
+        <p className="text-xs font-semibold uppercase tracking-wider text-sky-700 mb-1">
+          Evaluation
+        </p>
+        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
+          Model comparison
+        </h1>
+        <p className="text-slate-600 mt-2 max-w-2xl leading-relaxed">
           Three classifiers evaluated on the held-out HMDA 2024 California test
           set.
         </p>
       </header>
 
-      <section className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 mb-6">
+      <section className="bg-white rounded-2xl shadow-card border border-slate-200/80 p-6 sm:p-8 mb-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-4">
           Performance Summary
         </h2>
@@ -113,7 +119,7 @@ export default function ModelComparison() {
         </div>
       </section>
 
-      <section className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 mb-6">
+      <section className="bg-white rounded-2xl shadow-card border border-slate-200/80 p-6 sm:p-8 mb-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-1">
           ROC Curves
         </h2>
@@ -179,7 +185,7 @@ export default function ModelComparison() {
         </ResponsiveContainer>
       </section>
 
-      <section className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+      <section className="bg-white rounded-2xl shadow-card border border-slate-200/80 p-6 sm:p-8">
         <h2 className="text-lg font-semibold text-slate-900 mb-1">
           XGBoost Threshold Sensitivity
         </h2>
@@ -201,7 +207,7 @@ export default function ModelComparison() {
               {thresholds.map((t) => (
                 <tr
                   key={t.t}
-                  className={`border-b border-slate-100 ${t.t === 0.7 ? 'bg-amber-50' : ''}`}
+                  className={`border-b border-slate-100 ${t.t === 0.25 ? 'bg-amber-50' : ''}`}
                 >
                   <td className="py-2 pr-4 font-mono">{t.t.toFixed(2)}</td>
                   <td className="py-2 pr-4 font-mono">
@@ -217,8 +223,8 @@ export default function ModelComparison() {
           </table>
         </div>
         <p className="text-xs text-slate-500 mt-3">
-          Highlighted row (0.70) is the deployed operating point — chosen for
-          high deny precision (0.898) to minimize false denials.
+          Highlighted row (0.25) is the deployed operating point — chosen for
+          deny-class precision–recall tradeoffs consistent with production.
         </p>
       </section>
     </div>

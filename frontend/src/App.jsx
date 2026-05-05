@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
+import MobileNav from './components/MobileNav'
 import SimulationBanner from './components/SimulationBanner'
 import RiskPredictor from './pages/RiskPredictor'
 import ModelComparison from './pages/ModelComparison'
@@ -39,11 +40,12 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex bg-slate-100">
+    <div className="min-h-screen flex">
       <Sidebar user={user} onLogout={logout} />
-      <main className="flex-1 ml-0 md:ml-64">
+      <MobileNav user={user} onLogout={logout} />
+      <main className="flex-1 ml-0 md:ml-64 pt-14 md:pt-0 min-w-0">
         {simulationMode && <SimulationBanner />}
-        <div className="p-6 md:p-10 max-w-7xl mx-auto">
+        <div className="p-4 sm:p-6 md:p-10 max-w-7xl mx-auto">
           <Routes>
             <Route path="/" element={<Navigate to="/predict" replace />} />
             <Route

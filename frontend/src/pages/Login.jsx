@@ -26,23 +26,32 @@ export default function Login({ onLogin }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 px-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy-900 via-[#0f172a] to-navy-800 px-4 py-12 relative overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.25), transparent 45%), radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.2), transparent 40%)',
+        }}
+      />
+      <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
-          <div className="text-5xl mb-2">🏦</div>
-          <h1 className="text-3xl font-bold text-white">
+          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 text-4xl mb-4 shadow-lg">
+            🏦
+          </div>
+          <h1 className="text-3xl font-bold text-white tracking-tight">
             HMDA Risk Intelligence
           </h1>
-          <p className="text-slate-400 text-sm mt-1">
-            Mortgage Lending Decision Platform
+          <p className="text-slate-400 text-sm mt-2">
+            Mortgage lending decision platform
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-lg shadow-xl p-8 space-y-5"
+          className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl shadow-black/20 border border-white/20 p-8 space-y-5"
         >
-          <h2 className="text-xl font-semibold text-slate-900">Sign In</h2>
+          <h2 className="text-xl font-semibold text-slate-900">Sign in</h2>
 
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
@@ -55,7 +64,7 @@ export default function Login({ onLogin }) {
                 setUsername(e.target.value)
                 setError('')
               }}
-              className="w-full border border-slate-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-navy-600 focus:border-transparent"
+              className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500/35 focus:border-sky-400"
               placeholder="admin"
               autoFocus
             />
@@ -72,7 +81,7 @@ export default function Login({ onLogin }) {
                 setPassword(e.target.value)
                 setError('')
               }}
-              className="w-full border border-slate-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-navy-600 focus:border-transparent"
+              className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500/35 focus:border-sky-400"
               placeholder="••••••••"
             />
           </div>
@@ -85,9 +94,9 @@ export default function Login({ onLogin }) {
 
           <button
             type="submit"
-            className="w-full bg-navy-700 hover:bg-navy-600 text-white font-medium py-2.5 rounded-md transition-colors"
+            className="w-full bg-gradient-to-r from-navy-700 to-navy-600 hover:from-navy-600 hover:to-navy-700 text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-navy-900/30"
           >
-            Sign In
+            Sign in
           </button>
 
           <div className="text-xs text-slate-500 text-center pt-2 border-t border-slate-200">

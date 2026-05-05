@@ -51,15 +51,20 @@ const explanations = {
 export default function SHAPExplorer() {
   return (
     <div>
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">SHAP Explorer</h1>
-        <p className="text-slate-600 mt-1">
+      <header className="mb-8 pb-2 border-b border-slate-200/80">
+        <p className="text-xs font-semibold uppercase tracking-wider text-sky-700 mb-1">
+          Explainability
+        </p>
+        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
+          SHAP Explorer
+        </h1>
+        <p className="text-slate-600 mt-2 max-w-2xl leading-relaxed">
           Mean absolute SHAP values across the test set — which features drive
           the XGBoost model globally.
         </p>
       </header>
 
-      <section className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 mb-6">
+      <section className="bg-white rounded-2xl shadow-card border border-slate-200/80 p-6 sm:p-8 mb-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-1">
           Global Feature Importance
         </h2>
@@ -84,9 +89,9 @@ export default function SHAPExplorer() {
               formatter={(v) => Number(v).toFixed(3)}
               contentStyle={{ fontSize: 12 }}
             />
-            <Bar dataKey="value" radius={[0, 4, 4, 0]}>
+            <Bar dataKey="value" radius={[0, 6, 6, 0]}>
               {globalShap.map((_, idx) => (
-                <Cell key={idx} fill="#1e40af" />
+                <Cell key={idx} fill="#0284c7" />
               ))}
             </Bar>
           </BarChart>
@@ -102,11 +107,11 @@ export default function SHAPExplorer() {
           return (
             <div
               key={key}
-              className="bg-white rounded-lg shadow-sm border border-slate-200 p-5"
+              className="bg-white rounded-2xl shadow-card border border-slate-200/80 p-5 sm:p-6"
             >
               <div className="flex items-baseline justify-between flex-wrap gap-2">
                 <h3 className="font-semibold text-slate-900">{e.title}</h3>
-                <span className="text-xs font-mono text-blue-700 bg-blue-50 px-2 py-1 rounded">
+                <span className="text-xs font-mono text-sky-800 bg-sky-50 px-2.5 py-1 rounded-lg border border-sky-100">
                   {e.direction}
                 </span>
               </div>

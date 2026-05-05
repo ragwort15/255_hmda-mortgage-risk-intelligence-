@@ -81,8 +81,8 @@ function simulatePrediction(features) {
 }
 
 export function verdictFromProb(p) {
-  if (p < 0.4) return 'Approved'
-  if (p < 0.7) return 'Manual Review'
+  if (p < 0.15) return 'Approved'
+  if (p < 0.25) return 'Manual Review'
   return 'Flagged for Denial'
 }
 
