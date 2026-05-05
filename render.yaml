@@ -1,0 +1,12 @@
+# Full-stack Docker deploy (UI + API). Set PORT via Render (defaults work).
+# Add backend/xgb_model.pkl to the image (COPY in Dockerfile) or mount a disk with the model.
+version: "1"
+services:
+  - type: web
+    name: hmda-mortgage-app
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health

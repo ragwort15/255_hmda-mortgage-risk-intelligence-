@@ -1,6 +1,6 @@
 """HMDA Mortgage Risk Intelligence — Flask prediction API.
 
-Loads the trained XGBoost model (xgb_model.pkl) and serves /predict.
+Loads the trained XGBoost model (xgb_model.pkl) and serves POST /api/predict.
 
 Run:
     python backend/app.py
@@ -19,6 +19,7 @@ from flask_cors import CORS
 
 APP_DIR = Path(__file__).resolve().parent
 MODEL_PATH = APP_DIR / "xgb_model.pkl"
+DIST_DIR = APP_DIR / "static_dist"
 
 # Order matters: must match the training feature order used in Colab.
 FEATURE_ORDER = [
@@ -91,7 +92,7 @@ def health():
     )
 
 
-@app.route("/predict", methods=["POST", "OPTIONS"])
+@app.route("/api/predict", methods=["POST", "OPTIONS"])
 def predict():
     if request.method == "OPTIONS":
         return ("", 204)
@@ -129,6 +130,38 @@ def predict():
             "threshold": DENY_THRESHOLD_HIGH,
         }
     )
+
+
+def _register_frontend_routes():
+    """Serve Vite build from static_dist/ when present (Docker / single-host deploy)."""
+    if not DIST_DIR.is_dir():
+        return
+
+    from flask import send_file, send_from_directory
+    from werkzeug.exceptions import NotFound
+
+    @app.route("/assets/<path:filename>")
+    def vite_assets(filename):
+        return send_from_directory(DIST_DIR / "assets", filename)
+
+    @app.get("/")
+    def spa_index():
+        return send_file(DIST_DIR / "index.html")
+
+    @app.get("/<path:path>")
+    def spa_fallback(path):
+        base = DIST_DIR.resolve()
+        target = (DIST_DIR / path).resolve()
+        try:
+            target.relative_to(base)
+        except ValueError:
+            raise NotFound()
+        if target.is_file():
+            return send_from_directory(DIST_DIR, path)
+        return send_file(DIST_DIR / "index.html")
+
+
+_register_frontend_routes()
 
 
 if __name__ == "__main__":

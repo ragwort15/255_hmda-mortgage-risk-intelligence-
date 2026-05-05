@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const API_URL = 'http://localhost:5001'
+import { API_BASE_URL } from '../config.js'
 
 export const GLOBAL_SHAP_WEIGHTS = {
   dti_num: 0.77,
@@ -89,7 +88,7 @@ export function verdictFromProb(p) {
 
 export async function predict(features) {
   try {
-    const res = await axios.post(`${API_URL}/predict`, features, {
+    const res = await axios.post(`${API_BASE_URL}/api/predict`, features, {
       timeout: 3500,
     })
     return { ...res.data, simulated: false }
